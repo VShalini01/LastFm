@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Last.fm</title>
+    <link rel="icon" type="image/x-icon" href="https://e7.pngegg.com/pngimages/191/455/png-clipart-last-fm-music-brand-logos-internet-radio-house-dj-miscellaneous-text-thumbnail.png">
+
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="navbarlogo.png">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <ul class="nav-links">
+                <li>  <a href="#"><i class="fa fa-fw fa-search"></i></a></li>
+                <li><a href="#">Live</a></li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Charts</a></li>
+                <li>.</li>
+                <li><a href="login.html">Log In</a></li>
+                &nbsp;&nbsp;
+                <li><a class="signup" href="login.html" style="color: black;">SIGN UP</a></li>
+
+            </ul>
+            <div class="search-box" id="search-box">
+                <input type="search-input" placeholder="Search...">
+                <button class="search-close" id="search-close">&#10006;</button>
+            </div>
+            <button class="menu-toggle" id="menu-toggle">
+                <span class="menu-icon">&#9776;</span>
+            </button>
+        </div>
+    </nav>
+    <br><br>
+    <center>
+    <div class="login">
+        <br><br><br><br>
+        <h1 style="margin-left: -350px; margin-bottom: 40px;">Login</h1>
+        <form action="new.html" id="loginForm"> <!-- change to new page name-->
+            <center>
+            <table>
+            <tr><td><label for="text"><b>Username or email</b></label></td></tr>
+            <tr><td><input type="text" id="username" required></td></tr>
+            <tr><td> <label for="password"><b>Password</b></label></td></tr>
+                <tr><td> <input type="password" id="password" required></td></tr>
+            <br>
+            </table>
+            </center>
+            <br>
+            <button id="logbtn" type="submit">LET ME IN!</button>
+        </form>
+        <p class="signup-text">Don't have a profile? <a href="signup.html">Sign Up</a></p>
+    </div>
+    </center>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-list">
+                <h3>COMPANY</h3>
+                <ul>
+                    <li><a href="#">About Last.fm</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Features</a></li>
+                </ul>
+            </div>
+            <div class="footer-list">
+                <h3>HELP</h3>
+                <ul>
+                    <li><a href="#">Track My Music</a></li>
+                    <li><a href="#">Community Support</a></li>
+                    <li><a href="#">Community Guidelines</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+            <div class="footer-list">
+                <h3>ACCOUNT</h3>
+                <ul>
+                    <li><a href="login.html">Sign Up</a></li>
+                    <li><a href="login.html">Log In</a></li>
+                    <li><a href="#">Subscribe</a></li>
+                </ul>
+            </div>
+            <div class="footer-list">
+                <h3>FOLLOW US</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/last.fm">Facebook</a></li>
+                    <li><a href="https://www.twitter.com/last.fm">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/last.fm">Instagram</a></li>
+                    <li><a href="https://www.youtube.com/user/last.fm">You Tube</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <img src="img3.png" style="width: 100%;">
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+    const searchContainer = document.getElementById('search-box');
+    const isVisible = searchContainer.style.display === 'flex';
+    
+    if (isVisible) {
+        searchContainer.style.display = 'none';
+        searchContainer.querySelector('#search-input').value = ''; // Clear input
+    } else {
+        searchContainer.style.display = 'flex';
+        searchContainer.querySelector('#search-input').focus(); // Focus on input
+    }
+});
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+    const video = document.getElementById('intro-video');
+    const image = document.getElementById('intro-image');
+
+    video.addEventListener('ended', function() {
+        video.style.display = 'none';
+        image.style.display = 'block';
+});
+
+    });
+    </script>
+</body>
+</html>
