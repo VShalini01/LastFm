@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last.fm</title>
+    <link rel="stylesheet" href="beforelogin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="navbarlogo.png">
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <ul class="nav-links">
+                <li>  <a href="#"><i class="fa fa-fw fa-search"></i></a></li>
+                <li><a href="#">Live</a></li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Charts</a></li>
+                <li>.</li>
+                <li><a href="#">Log In</a></li>
+                &nbsp;&nbsp;
+                <li><a class="signup" href="#" style="color: black;">SIGN UP</a></li>
+
+            </ul>
+            <div class="search-box" id="search-box">
+                <input type="text" placeholder="Search...">
+                <button class="search-close" id="search-close">&#10006;</button>
+            </div>
+            <button class="menu-toggle" id="menu-toggle">
+                <span class="menu-icon">&#9776;</span>
+            </button>
+        </div>
+    </nav>
+    <br><br><br>
+    <img class="img1" src="img1.png">
+    <div class="container2">
+        <div class="media">
+            <video id="intro-video" class="media-content" autoplay muted>
+                <source src="vid1.mp4" type="video/mp4">
+            </video>
+    <img class="img2" src="img2.png" style="width: 100%;">
+        </div>
+    </div>
+    <!-- <div class="container-artists">
+        <h1>Trending Artists</h1>
+        <div class="artists">
+            <div class="artist-card">
+                <img src="https://lastfm.freetls.fastly.net/i/u/ar0/6fcce82a8773765a8cd37d87877f8447.jpg" 
+                style="width:200px;
+                height: 200px;
+                 border-radius: 50%;">
+            </div>
+            <div class="artist-card">
+                <img src="https://lastfm.freetls.fastly.net/i/u/ar0/2bd3797623623a86ec260b4b7e3a55da.jpg" 
+                style="width:200px;
+                height: 200px;
+                 border-radius: 50%;">
+            </div>
+            <div class="artist-card">
+                <img src="https://lastfm.freetls.fastly.net/i/u/ar0/ff0b0ea9f9bb08d17cc46bd2f44c02b8.jpg" style="width:200px;
+                height: 200px;
+                 border-radius: 50%;">
+            </div>
+        </div>
+    </div> -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-list">
+                <h3>COMPANY</h3>
+                <ul>
+                    <li><a href="#">About Last.fm</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Features</a></li>
+                </ul>
+            </div>
+            <div class="footer-list">
+                <h3>HELP</h3>
+                <ul>
+                    <li><a href="#">Track My Music</a></li>
+                    <li><a href="#">Community Support</a></li>
+                    <li><a href="#">Community Guidelines</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+            <div class="footer-list">
+                <h3>ACCOUNT</h3>
+                <ul>
+                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="#">Log In</a></li>
+                    <li><a href="#">Subscribe</a></li>
+                </ul>
+            </div>
+            <div class="footer-list">
+                <h3>FOLLOW US</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/last.fm">Facebook</a></li>
+                    <li><a href="https://www.twitter.com/last.fm">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/last.fm">Instagram</a></li>
+                    <li><a href="https://www.youtube.com/user/last.fm">You Tube</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <img src="img3.png" style="width: 100%;">
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const video = document.getElementById('intro-video');
+    const image = document.getElementById('intro-image');
+
+    video.addEventListener('ended', function() {
+        video.style.display = 'none';
+        image.style.display = 'block';
+    });
+});
+    </script>
+</body>
+</html>
