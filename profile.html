@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last.fm Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            margin: 0;
+            background-color: #0f0f0f;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Styles for the navbar */
+        .navbar {
+            height: 50px; /* Adjust height as needed */
+            border: none;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        iframe {
+            width: 100%;
+            height: 50px; /* Match the navbar height */
+            border: none;
+        }
+
+        /* Profile Header Section */
+        .profile-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 20px;
+            margin-top: 60px; /* To place it below the navbar */
+            background-color: #111;
+            background-image: url('bg.jpg'); /* Using bg.jpg as the background */
+            background-size: cover; /* Ensure the image covers the entire section */
+            background-position: center center;
+        }
+
+        .profile-header .profile-image {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 100px;
+            height: 100px;
+        }
+
+        .profile-header .profile-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .profile-header .profile-info {
+            margin-left: 20px;
+        }
+
+        .profile-header .profile-info h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .profile-header .profile-info p {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            margin-top: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .tabs li {
+            margin-right: 20px;
+        }
+
+        .tabs a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 16px;
+        }
+
+        .tabs a:hover {
+            color: #fff;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .stats div {
+            margin-right: 40px;
+        }
+
+        .stats div h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .stats div p {
+            margin: 5px 0 0;
+            color: #ccc;
+        }
+
+        /* Top Track Section */
+        .top-track {
+            margin-left: auto;
+            text-align: right;
+            position: relative;
+        }
+
+        .top-track img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .top-track h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .top-track p {
+            margin: 5px 0 0;
+            color: #ccc;
+        }
+
+        .top-track .play-button {
+            background-color: #ff0000;
+            padding: 5px 10px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Set Obsession Button */
+        .set-obsession-button {
+            background-color: #ff0000;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px; /* Placed under the play button */
+        }
+
+        /* Make the background white after the profile header */
+        .content {
+            background-color: #fff;
+            color: black;
+            padding: 40px;
+        }
+
+        /* New White Section with Three Rectangles */
+        .white-section {
+            background-color: #fff;
+            color: black;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between; /* Adjusted for better spacing */
+            margin-top: 20px;
+        }
+
+        .white-section .rect {
+            width: 30%;
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: left; /* Align text to the left */
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-right: 20px; /* Add gap between rectangles */
+            position: relative; /* Position relative for image alignment */
+            cursor: pointer;
+        }
+
+        .white-section .rect:last-child {
+            margin-right: 0; /* Remove margin from the last rectangle */
+        }
+
+        .white-section .rect img {
+            width: 80px; /* Increased square size for images */
+            height: 80px; /* Increased square size for images */
+            border-radius: 8px;
+            position: absolute; /* Position absolutely */
+            right: 20px; /* Align to the right */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Centering adjustment */
+        }
+
+        .white-section .rect h3 {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .white-section .rect p {
+            color: #666;
+        }
+
+        /* Hover effect */
+        .rect:hover h3 {
+            text-decoration: underline;
+        }
+
+        .rect:hover .close-icon {
+            display: block;
+        }
+
+        /* Close Icon */
+        .close-icon {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .close-icon:hover {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (linked from navbar.html) -->
+    <div class="navbar">
+        <iframe src="navbar.html" title="Navigation Bar"></iframe>
+    </div>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="profile-image">
+            <img src="profile.jpg" alt="Profile Picture">
+        </div>
+        <div class="profile-info">
+            <h2>lasyuh</h2>
+            <p>scrobbling since 14 Apr 2022</p>
+            <ul class="tabs">
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Playlists</a></li>
+                <li><a href="#">Following</a></li>
+                <li><a href="#">Followers</a></li>
+            </ul>
+            <div class="stats">
+                <div>
+                    <h3>19,697</h3>
+                    <p>Scrobbles</p>
+                </div>
+                <div>
+                    <h3>1,299</h3>
+                    <p>Artists</p>
+                </div>
+                <div>
+                    <h3>20</h3>
+                    <p>Loved Tracks</p>
+                </div>
+            </div>
+        </div>
+        <div class="top-track">
+            <img src="toptrack.jpg" alt="Top Track Album Art">
+            <h3>please</h3>
+            <p>Chelsea Cutler</p>
+            <button class="play-button">Play</button>
+            <!-- Set Obsession Button -->
+            <button class="set-obsession-button">Set Obsession</button>
+        </div>
+    </div>
+<!-- Content Section (everything after the profile header) -->
+<div class="content">
+    <!-- New White Section with Three Rectangles -->
+    <div class="white-section">
+        <div class="rect">
+            <span class="close-icon">&times;</span>
+            <h3>Discover Siya Hai</h3>
+            <p>Recommendations available</p>
+            <img src="rect1.jpg" alt="Rect 1">
+        </div>
+        <div class="rect">
+            <span class="close-icon">&times;</span>
+            <h3>Discover Free Spirit</h3>
+            <p>Recommendations available</p>
+            <img src="rect2.jpg" alt="Rect 2">
+        </div>
+        <div class="rect">
+            <span class="close-icon">&times;</span>
+            <h3>Create a Similar Tracks Playlist</h3>
+            <p>Estimated time: 1 min</p>
+            <img src="rect3.jpg" alt="Rect 3">
+        </div>
+    </div>
+
+    <!-- Recent Tracks Section -->
+<div class="recent-tracks-section">
+    <img src="song.jpg" alt="Recent Tracks" class="recent-tracks-img">
+
+    <!-- Right Side Content -->
+    <div class="right-side">
+        <div class="play-options">
+            <button class="library-button">Play your library</button>
+            <button class="mix-button">Play your mix</button>
+            <button class="recommendations-button">Play your recommendations</button>
+        </div>
+
+        <div class="stats-box">
+            <h3>126 scrobbles so far this week.</h3>
+            <p>Unlock more exclusive stats and insights.</p>
+            <button class="upgrade-button">UPGRADE TO PRO</button>
+        </div>
+
+        <div class="listening-reports">
+            <h4>Listening Reports</h4>
+            <p>13 Sep - 19 Sep</p>
+            <div class="listening-chart"></div> <!-- Placeholder for the chart -->
+
+            <!-- Additional sections under 13 Sep - 19 Sep -->
+            <div class="report-item">
+                <div class="report-text">
+                    <p>August</p>
+                    <p>Last.month</p>
+                </div>
+                <img src="month.jpg" alt="Monthly Report">
+            </div>
+            <div class="report-item">
+                <div class="report-text">
+                    <p>2023</p>
+                    <p>Last.year</p>
+                </div>
+                <img src="year.jpg" alt="Yearly Report">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add the new image here -->
+<img src="song1.jpg" alt="Recent Tracks 1" class="recent-tracks-img">
+<img src="song2.jpg" alt="Recent Tracks 2" class="recent-tracks-img">
+<img src="song3.jpg" alt="Recent Tracks 2" class="recent-tracks-img">
+
+<!-- Shoutbox Section -->
+<div class="shoutbox">
+    <div class="shoutbox-header">
+        <h3>Shoutbox</h3>
+    </div>
+    <div class="shoutbox-content">
+        <img src="profile.jpg" alt="User Avatar" class="shoutbox-avatar">
+        <input type="text" placeholder="lasyuh, leave a shout for lasyuh..." class="shoutbox-input">
+        <button class="shoutbox-button">Post Shout</button>
+    </div>
+</div>
+<footer>
+    <div class="footer-container">
+        <div class="footer-list">
+            <h3>COMPANY</h3>
+            <ul>
+                <li><a href="#">About Last.fm</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">Features</a></li>
+            </ul>
+        </div>
+        <div class="footer-list">
+            <h3>HELP</h3>
+            <ul>
+                <li><a href="#">Track My Music</a></li>
+                <li><a href="#">Community Support</a></li>
+                <li><a href="#">Community Guidelines</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </div>
+        <div class="footer-list">
+            <h3>ACCOUNT</h3>
+            <ul>
+                <li><a href="#">Sign Up</a></li>
+                <li><a href="#">Log In</a></li>
+                <li><a href="#">Subscribe</a></li>
+            </ul>
+        </div>
+        <div class="footer-list">
+            <h3>FOLLOW US</h3>
+            <ul>
+                <li><a href="https://www.facebook.com/last.fm">Facebook</a></li>
+                <li><a href="https://www.twitter.com/last.fm">Twitter</a></li>
+                <li><a href="https://www.instagram.com/last.fm">Instagram</a></li>
+                <li><a href="https://www.youtube.com/user/last.fm">You Tube</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <img src="img3.png" style="width: 100%;">
+</footer>
+
+
+
+<!-- CSS to style the new section -->
+<style>
+    /* General Content Container */
+    .content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 20px;
+    }
+
+    /* White Section */
+    .white-section {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+    }
+
+    .rect {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        width: 30%;
+        text-align: center;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .close-icon {
+        float: right;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .rect h3 {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+
+    .rect p {
+        font-size: 14px;
+        color: gray;
+    }
+
+    .rect img {
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+        border-radius: 8px;
+    }
+
+    /* Recent Tracks Section */
+    .recent-tracks-section {
+        display: flex;
+        margin-top: 20px;
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .recent-tracks-img {
+        width: 75%; /* 3/4th of the width */
+        border-radius: 8px;
+    }
+
+    .right-side {
+        width: 25%; /* 1/4th of the width */
+        padding-left: 20px;
+    }
+
+    /* Play options buttons */
+    .play-options {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .library-button, .mix-button, .recommendations-button {
+        background-color: white;
+        color: black;
+        border: none;
+        padding: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        text-align: left;
+        font-size: 16px;
+    }
+
+    .library-button:hover, .mix-button:hover, .recommendations-button:hover {
+        text-decoration: underline;
+    }
+
+    /* Stats Box */
+    .stats-box {
+        background-color: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .upgrade-button {
+        background-color: yellow; /* Changed to yellow */
+        color: black;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .upgrade-button:hover {
+        background-color: #e6e600; /* Slightly darker yellow on hover */
+    }
+
+    /* Listening Reports Section */
+    .listening-reports {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .listening-reports h4 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .report-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fafafa;
+    }
+
+    .report-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .report-text p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .report-item img {
+        width: 50px;
+        height: 50px;
+    }
+    /* Shoutbox Styles */
+.shoutbox {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 600px; /* Adjust the width as needed */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shoutbox-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #111;
+}
+
+.shoutbox-content {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.shoutbox-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.shoutbox-input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.shoutbox-button {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.shoutbox-button:hover {
+    background-color: #cc0000;
+}
+footer {
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    background-color: #0e0d0d;
+    color: #fff;
+}
+
+.footer-container {
+    font-size: medium;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+.footer-list {
+    margin: 20px;
+    flex: 1;
+    min-width: 50px;
+    margin-left: 150px;
+    margin-right: 100px;
+}
+
+.footer-list h3 {
+    margin-top: 0;
+    color: #a9a0a0;
+}
+
+.footer-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: 10px;
+}
+
+.footer-list a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-list a:hover {
+    text-decoration: underline;
+}
+
+
+
+</style>
+</div>
+</body>
+</body>
+</html>

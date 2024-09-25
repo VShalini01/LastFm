@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last.fm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            margin: 0;
+            background-color: #0f0f0f;
+        }
+
+        .navbar {
+            background-color: black;
+            color: #bdbaba;
+            padding: 5px 0; /* Reduced padding */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            flex-grow: 1;
+        }
+
+        .logo img {
+            height: 40px; /* Adjust based on your logo's size */
+            margin-right: 10px; /* Space between logo and icon */
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .nav-links li {
+            margin: 0 10px; /* Reduced margin */
+        }
+
+        .nav-links a {
+            color: #dbd7d7;
+            text-decoration: none;
+            padding: 8px 9px;
+            font-size: 14px;
+            transition: color 0.3s;
+            font-family: 'Arial Narrow', Arial, sans-serif; /* Font updated */
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .profile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-left: -10px; /* Move it to the left */
+        }
+
+        .profile-icon img {
+            width: 35px; /* Slightly smaller */
+            height: 35px; /* Slightly smaller */
+            border-radius: 50%; /* Makes the picture round */
+            border: 2px solid white;
+            object-fit: cover; /* Ensures the image fills the circle */
+        }
+
+        .search-toggle {
+            background: none;
+            border: none;
+            color: #fff; /* Ensure search icon is white */
+            font-size: 1.2em; /* Adjusted font size for a smaller icon */
+            cursor: pointer;
+            margin-left: 5px; /* Reduced margin */
+        }
+
+        .search-box {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: #333;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            flex-direction: row;
+        }
+
+        .search-box input {
+            width: calc(100% - 70px); /* Adjusted width for smaller search box */
+            padding: 5px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .search-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .search-box {
+                position: static;
+                width: 100%;
+                margin-top: 10px;
+                box-shadow: none;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="Last.fm Logo with Play Button">
+            </a>
+
+            <ul class="nav-links">
+                <li>
+                    <button class="search-toggle" id="search-toggle">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Live</a></li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Charts</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a class="signup" href="#" style="color: black;">SIGN UP</a></li>
+            </ul>
+
+            <div class="profile-icon">
+                <img src="profile.jpg" alt="Profile Picture">
+            </div>
+
+            <div class="search-box" id="search-box">
+                <input type="text" placeholder="Search...">
+                <button class="search-close" id="search-close">&#10006;</button>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // JavaScript to toggle search box visibility
+        document.getElementById('search-toggle').onclick = function() {
+            const searchBox = document.getElementById('search-box');
+            searchBox.style.display = searchBox.style.display === 'none' ? 'flex' : 'none';
+        };
+
+        document.getElementById('search-close').onclick = function() {
+            document.getElementById('search-box').style.display = 'none';
+        };
+    </script>
+</body>
+</html>
